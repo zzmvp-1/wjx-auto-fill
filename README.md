@@ -9,6 +9,6 @@
 #### 1.爬取问卷
 
 ```python
-driver = webdriver.Edge(options=option)
+driver = webdriver.Edge()
 driver.get(url)
 ```
