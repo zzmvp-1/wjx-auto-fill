@@ -47,15 +47,7 @@ if __name__ == "__main__":
                                {'source': 'Object.defineProperty(navigator, "webdriver", {get: () => undefined})'})
 
         driver.get(url)
-        # 你已经回答过部分题目，是否继续作答
-        # noinspection PyBroadException
-        try:
-            time.sleep(0.3)
-            comfirm = driver.find_element(By.XPATH, '//*[@id="layui-layer1"]/div[3]/a[1]')
-            comfirm.click()
-            time.sleep(0.5)
-        except:
-            pass
+        
         # 题号
         index = 1
         # 获取题目数量
@@ -104,8 +96,7 @@ if __name__ == "__main__":
         submit_button.click()
         time.sleep(1)
 
-        # 请点击智能验证码进行验证！ //*[@id="layui-layer1"]/div[3]/a
-        # noinspection PyBroadException
+        # 请点击智能验证码进行验证！
         try:
             comfirm = driver.find_element(By.XPATH, '//*[@id="layui-layer1"]/div[3]/a')
             comfirm.click()
@@ -114,7 +105,6 @@ if __name__ == "__main__":
             pass
 
         # 点击按钮开始智能验证
-        # noinspection PyBroadException
         try:
             button = driver.find_element(By.XPATH, '//*[@id="SM_BTN_WRAPPER_1"]')
             button.click()
@@ -123,7 +113,6 @@ if __name__ == "__main__":
             pass
 
         # 滑块验证
-        # noinspection PyBroadException
         try:
             slider = driver.find_element(By.XPATH, '//*[@id="nc_1__scale_text"]/span')
             time.sleep(0.3)
