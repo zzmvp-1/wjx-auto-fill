@@ -12,4 +12,3 @@
 driver = webdriver.Edge(options=option)
 driver.get(url)
 ```
-
