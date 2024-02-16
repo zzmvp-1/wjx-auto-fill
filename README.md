@@ -6,9 +6,12 @@
 
 ### 实现思路
 
+![image-20240216194754592](C:\Users\zz\AppData\Roaming\Typora\typora-user-images\image-20240216194754592.png)
+
 #### 1.爬取问卷
 
 ```python
 driver = webdriver.Edge()
 driver.get(url)
 ```
+
