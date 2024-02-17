@@ -87,7 +87,7 @@ prob = {
 answerList = {
     6: ["123", "12"]
 }
-# IP API提取链接
+# IP API提取链接 如果不是通过API提取，请根据自己的情况修改相应建立IP代理池的代码
 api = ""
 # User-Agent库 第一个为浏览器、第二个为微信、第三个为QQ
 UA = ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 Edg/121.0.0.0",
