@@ -37,7 +37,6 @@ if __name__ == "__main__":
         ip = requests.get(api).text
         # 修改IP
         option.add_argument('--proxy-server={}'.format(ip))
-        option.add_experimental_option('detach', True)
 
         driver = webdriver.Edge(options=option)
         # 修改User-Agent
