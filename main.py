@@ -19,7 +19,7 @@ answerList = config.answerList
 # 填写份数
 epochs = config.epochs
 
-# IP代理池
+# IP API代提取链接
 api = config.api
 
 # UA库
@@ -32,7 +32,8 @@ option.add_experimental_option('useAutomationExtension', False)
 if __name__ == "__main__":
 
     for epoch in range(epochs):
-
+        
+        # 通过API链接爬取IP，这里根据自己的情况进行修改
         ip = requests.get(api).text
         # 修改IP
         option.add_argument('--proxy-server={}'.format(ip))
