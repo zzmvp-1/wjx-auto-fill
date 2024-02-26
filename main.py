@@ -6,6 +6,7 @@ import time
 import requests
 import utils
 import config
+import sys
 
 # 问卷链接
 url = config.url
@@ -91,7 +92,7 @@ if __name__ == "__main__":
                 time.sleep(1)
             else:
                 print("没有该题型")
-                break
+                sys.exit(0)
                 
         time.sleep(1)
         submit_button = driver.find_element(By.XPATH, '//*[@id="ctlNext"]')
