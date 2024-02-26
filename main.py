@@ -90,7 +90,9 @@ if __name__ == "__main__":
                 index = utils.multi_slide(driver, i, prob, index)
                 time.sleep(1)
             else:
-                pass
+                print("没有该题型")
+                break
+                
         time.sleep(1)
         submit_button = driver.find_element(By.XPATH, '//*[@id="ctlNext"]')
         submit_button.click()
@@ -101,16 +103,16 @@ if __name__ == "__main__":
             comfirm = driver.find_element(By.XPATH, '//*[@id="layui-layer1"]/div[3]/a')
             comfirm.click()
             time.sleep(1)
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         # 点击按钮开始智能验证
         try:
             button = driver.find_element(By.XPATH, '//*[@id="SM_BTN_WRAPPER_1"]')
             button.click()
             time.sleep(0.5)
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         # 滑块验证
         try:
@@ -120,11 +122,11 @@ if __name__ == "__main__":
                 width = slider.size.get('width')
                 ActionChains(driver).drag_and_drop_by_offset(slider, width, 0).perform()
                 time.sleep(1)
-        except:
-            pass
+        except Exception as e:
+            print(e)
 
         time.sleep(3)
         driver.quit()
         print("已完成{}份".format(epoch))
-
+        
     print("全部完成{}份填写".format(epochs))
