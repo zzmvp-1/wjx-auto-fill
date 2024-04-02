@@ -160,37 +160,27 @@ def multi_slide(driver, id, prob, idx):
         idx += 1
     return idx
 
-def add_one(lists, num):
-    for i in range(0, len(lists)):
-        if lists[i] < lists[num]:
+def add_one(lists, num, index):
+    for i in range(index, len(lists)):
+        if lists[i] < num:
             lists[i] += 1
-    lists.pop(num)
+    return lists
 
 # 排序题 type=11
 def sort(driver, id, prob, idx):
     xpath = '//*[@id="div{}"]/ul/li'.format(id)
     answers = driver.find_elements(By.XPATH, xpath)
-    lists = [n for n in range(1, len(answers)+1)]
-    order = prob[idx]
-    while len(order) > 0:
-        j = order[0]
-        if j == lists[0]:
-            xpath = '//*[@id="div{}"]/ul/li[{}]'.format(id, j)
-            driver.find_element(By.XPATH, xpath).click()
-            time.sleep(3)
-            lists.pop(0)
-            order.pop(0)
-        else:
-            xpath = '//*[@id="div{}"]/ul/li[{}]'.format(id, j)
-            driver.find_element(By.XPATH, xpath).click()
-            time.sleep(3)
-            index = lists.index(j)
-            add_one(lists, index)
-            add_one(order, index)
+    order = prob.get(idx)[:]
+    for i in range(len(order)):
+        index = order[i]
+        xpath = '//*[@id="div{}"]/ul/li[{}]'.format(id, index)
+        driver.find_element(By.XPATH, xpath).click()
+        time.sleep(0.5)
+        order = add_one(order, index, i)
     idx += 1
     return idx
 
-# 分配题 type=12
+# 分配题 type=12  暂时还没有完成
 def distribute(driver, id, prob, idx):
     xpath = '//*[@id="divRefTab{}"]/tbody/tr'.format(id)
     q_len = len(driver.find_elements(By.XPATH, xpath))/2
