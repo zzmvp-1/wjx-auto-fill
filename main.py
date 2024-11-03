@@ -36,18 +36,9 @@ if __name__ == '__main__':
 
     for epoch in range(epochs):
 
-        # ip = requests.get(api).text
-        # # 修改IP
-        # option.add_argument('--proxy-server={}'.format(ip))
-
-        # txt = requests.get(api).text  # 获取 API 响应内容
-        # strings = txt.split(" ")  # 按空格拆分为列表
-        # # 提取 IP、用户名和密码
-        # ip = strings[0]
-        # username = strings[1]
-        # password = strings[2]
-        # proxy = f"http://{username}:{password}@{ip}"
-        # option.add_argument(f'--proxy-server={proxy}')
+        ip = requests.get(api).text
+        # 修改IP
+        option.add_argument('--proxy-server={}'.format(ip))
 
         option.add_experimental_option('detach', True)
 
