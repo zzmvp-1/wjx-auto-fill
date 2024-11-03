@@ -34,31 +34,31 @@ flag = question.get_attribute("type")
 你使用selenium进行问卷填写在提交的时候一定会触发智能验证。
 
 ```python
-# 请点击智能验证码进行验证！ 
+# 请点击智能验证码进行验证！
 try:
     comfirm = driver.find_element(By.XPATH, '//*[@id="layui-layer1"]/div[3]/a')
     comfirm.click()
-    time.sleep(1)
-except:
+    time.sleep(0.5)
+except Exception as e:
     pass
 
 # 点击按钮开始智能验证
 try:
     button = driver.find_element(By.XPATH, '//*[@id="SM_BTN_WRAPPER_1"]')
     button.click()
-    time.sleep(0.5)
-except:
+    time.sleep(3)
+except Exception as e:
     pass
 
 # 滑块验证
 try:
-    slider = driver.find_element(By.XPATH, '//*[@id="nc_1__scale_text"]/span')
-    time.sleep(0.3)
-    if str(slider.text).startswith("请按住滑块，拖动到最右边"):
-        width = slider.size.get('width')
+    slider1 = driver.find_element(By.XPATH, '//*[@id="nc_1__scale_text"]/span')
+    if str(slider1.text).startswith("请按住滑块，拖动到最右边"):
+        width = slider1.size.get('width')
+        slider = driver.find_element(By.XPATH, '//*[@id="nc_1_n1z"]')
         ActionChains(driver).drag_and_drop_by_offset(slider, width, 0).perform()
-        time.sleep(1)
-except:
+        time.sleep(3)
+except Exception as e:
     pass
 ```
 
