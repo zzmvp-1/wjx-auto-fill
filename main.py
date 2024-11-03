@@ -6,7 +6,7 @@ import time
 import requests
 import utils
 import config
-import sys
+from threading import Thread
 
 # 问卷链接
 url = config.url
@@ -20,7 +20,7 @@ answerList = config.answerList
 # 填写份数
 epochs = config.epochs
 
-# IP API代提取链接
+# IP代理池
 api = config.api
 
 # UA库
@@ -30,9 +30,11 @@ option = webdriver.EdgeOptions()
 option.add_experimental_option('excludeSwitches', ['enable-automation'])
 option.add_experimental_option('useAutomationExtension', False)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    curCount = 0
+    errCount = 0
 
-        for epoch in range(epochs):
+    for epoch in range(epochs):
 
         # ip = requests.get(api).text
         # # 修改IP
@@ -57,9 +59,6 @@ if __name__ == "__main__":
         # 将webdriver属性置为undefined
         driver.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument',
                                {'source': 'Object.defineProperty(navigator, "webdriver", {get: () => undefined})'})
-
-        driver.set_window_size(550, 550)
-        driver.set_window_position(x=x, y=y)
 
         driver.get(url)
         time.sleep(0.3)
@@ -151,7 +150,13 @@ if __name__ == "__main__":
             pass
 
         time.sleep(3)
+        url1 = driver.current_url  # 表示问卷填写完成后跳转的链接，一旦跳转说明填写成功
+        if url != url1:
+            curCount += 1
+            print("已完成{}份".format(curCount))
+        else:
+            errCount += 1
         driver.quit()
-        print("已完成{}份".format(epoch + 1))
         time.sleep(1)
-    print("全部完成{}份填写".format(epochs))
+
+    print("全部完成{}份填写".format(epochs), "成功了{}份".format(curCount), "失败了{}份".format(errCount))
