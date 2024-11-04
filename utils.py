@@ -48,8 +48,8 @@ def multi_choice(driver, id, prob, idx):
     # 概率为0的选项个数
     count = sum(1 for i in p if i == 0)
     n = random.randint(1, len(answers)-count)
-    q_selects = numpy.random.choice(a=numpy.arange(1, len(answers)+1), size=n, replace=False, p=p)
-    for j in q_selects:
+    q_selects = numpy.random.choice(a=numpy.arange(1, len(answers)+1), size=n, replace=True, p=p)
+    for j in list(set(q_selects)):
         driver.find_element(By.XPATH, '//*[@id="div{}"]/div[2]/div[{}]'.format(id, j)).click()
     idx += 1
     return idx
