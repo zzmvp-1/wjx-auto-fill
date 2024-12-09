@@ -130,15 +130,6 @@ if __name__ == '__main__':
             pass
 
         # 滑块验证
-        try:
-            slider1 = driver.find_element(By.XPATH, '//*[@id="nc_1__scale_text"]/span')
-            if str(slider1.text).startswith("请按住滑块，拖动到最右边"):
-                width = slider1.size.get('width')
-                slider = driver.find_element(By.XPATH, '//*[@id="nc_1_n1z"]')
-                ActionChains(driver).drag_and_drop_by_offset(slider, width, 0).perform()
-                time.sleep(3)
-        except Exception as e:
-            pass
 
         time.sleep(3)
         url1 = driver.current_url  # 表示问卷填写完成后跳转的链接，一旦跳转说明填写成功
